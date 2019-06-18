@@ -1,0 +1,11 @@
+---
+# vars file for storage
+access_mode: ReadWriteMany
+storage_class_name: azurefile
+requests_storage: 2G
+sku_name: Standard_LRS
+provisioner: kubernetes.io/azure-file
+mount_dir_mode: "0777"
+mount_file_mode: "0777"
+mount_uid: 1000
+mount_gid: 1000

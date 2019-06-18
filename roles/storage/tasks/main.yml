@@ -1,0 +1,9 @@
+---
+# Include variables and define needed variables.
+# eg: vars/azure.yml
+- name: Include cloud-specific variables
+  include_vars: "{{ cloud_provider }}.yml"
+
+# Setup/install tasks.
+# eg: tasks/storage-azure.yml
+- include_tasks: "storage-{{ cloud_provider }}.yml"

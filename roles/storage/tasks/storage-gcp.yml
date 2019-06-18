@@ -1,0 +1,12 @@
+---
+- include_tasks: "namespace.yml"
+
+# Reclaim released Persistent Volume
+- include_tasks: "reclaim-persistent-volume.yml"
+
+- name: set {{ meta.name }} deployment to {{ state }}
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'storage-gcp.yml.j2') }}"
+   namespace: "{{ meta.namespace }}"
+  ignore_errors: true

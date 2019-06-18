@@ -1,0 +1,27 @@
+# https://cloud.google.com/filestore/docs/accessing-fileshares
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ meta.name }}
+  namespace: {{ meta.namespace }}
+spec:
+  capacity:
+    storage: {{ requests_storage }}
+  accessModes:
+  - {{ access_mode }}
+  nfs:
+    path: /{{ fileshare_path }}
+    server: {{ server_ip_address }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ meta.name }}
+  namespace: {{ meta.namespace }}
+spec:
+  accessModes:
+  - {{ access_mode }}
+  storageClassName: ""
+  resources:
+    requests:
+      storage: {{ requests_storage }}

@@ -1,0 +1,5 @@
+---
+- version: v1alpha1
+  group: dkozlov.com
+  kind: Storage
+  playbook: /opt/ansible/playbook.yml

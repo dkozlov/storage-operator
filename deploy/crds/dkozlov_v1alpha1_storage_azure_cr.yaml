@@ -1,0 +1,12 @@
+# Have automatic conversion from camelCase to snake_case in mind, 
+# as it will happen to all 'extra vars' passed into the CR spec.
+apiVersion: dkozlov.com/v1alpha1
+kind: Storage
+metadata:
+  name: example-azure-storage
+  namespace: default
+spec:
+  # Add fields here
+  state: present
+  cloudProvider: azure
+  requestsStorage: 1Gi

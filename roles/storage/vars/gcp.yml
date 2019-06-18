@@ -1,0 +1,6 @@
+---
+# vars file for storage
+access_mode: ReadWriteMany
+requests_storage: 3T
+fileshare_path: share1
+server_ip_address: 10.0.1.2

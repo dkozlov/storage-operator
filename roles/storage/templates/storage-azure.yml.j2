@@ -1,0 +1,26 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: {{ storage_class_name }}
+  namespace: {{ meta.namespace }}
+provisioner: {{ provisioner }}
+mountOptions:
+  - dir_mode={{ mount_dir_mode }}
+  - file_mode={{ mount_file_mode }}
+  - uid={{ mount_uid }}
+  - gid={{ mount_gid }}
+parameters:
+  skuName: {{ sku_name }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ meta.name }}
+  namespace: {{ meta.namespace }}
+spec:
+  accessModes:
+    - {{ access_mode }}
+  storageClassName: {{ storage_class_name }}
+  resources:
+    requests:
+      storage: {{ requests_storage }}

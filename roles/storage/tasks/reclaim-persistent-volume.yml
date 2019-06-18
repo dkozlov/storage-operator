@@ -1,0 +1,23 @@
+---
+- name: Get the Persistent Volume
+  k8s_facts:
+   api_version: v1
+   kind: PersistentVolume
+   name: "{{ meta.name }}"
+   namespace: "{{ meta.namespace }}"
+  register: persistent_volume
+  ignore_errors: true
+
+- debug:
+    msg: "{{ persistent_volume }}"
+  ignore_errors: true
+
+# https://github.com/kubernetes/website/blob/master/content/en/docs/concepts/storage/persistent-volumes.md#retain
+- name: Reclaim released Persistent Volume with Released status phase
+  k8s:
+   state: absent
+   kind: PersistentVolume
+   name: "{{ meta.name }}"
+   namespace: "{{ meta.namespace }}"
+  when: ( persistent_volume.resources | length > 0 ) and ( persistent_volume.resources[0].status is defined ) and ( persistent_volume.resources[0].status.phase == "Released" )
+  ignore_errors: true

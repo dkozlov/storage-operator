@@ -1,0 +1,14 @@
+# Have automatic conversion from camelCase to snake_case in mind, 
+# as it will happen to all 'extra vars' passed into the CR spec.
+apiVersion: dkozlov.com/v1alpha1
+kind: Storage
+metadata:
+  name: example-gcp-storage
+  namespace: default
+spec:
+  # Add fields here
+  state: present
+  cloudProvider: gcp
+  requestsStorage: 2T
+  filesharePath: gcpshare
+  serverIpAddress: 10.0.1.2
